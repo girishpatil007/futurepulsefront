@@ -3,11 +3,11 @@ import { Card } from "./ui/card";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
 
 const barData = [
-  { category: "Electronics", sales: 4000 },
-  { category: "Clothing", sales: 3000 },
-  { category: "Food", sales: 2000 },
-  { category: "Books", sales: 2780 },
-  { category: "Sports", sales: 1890 },
+  { category: "Electronics", current: 3000, predicted: 4000 },
+  { category: "Clothing", current: 2500, predicted: 3000 },
+  { category: "Food", current: 1800, predicted: 2000 },
+  { category: "Books", current: 2200, predicted: 2780 },
+  { category: "Sports", current: 1500, predicted: 1890 },
 ];
 
 const pieData = [
@@ -34,7 +34,7 @@ const PredictionResults = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card className="p-4 bg-black/40 backdrop-blur-sm border-gray-800">
-          <h3 className="text-lg font-semibold mb-4">Predicted Sales by Category</h3>
+          <h3 className="text-lg font-semibold mb-4">Sales Comparison by Category</h3>
           <div className="h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={barData}>
@@ -47,13 +47,8 @@ const PredictionResults = () => {
                     border: "1px solid #333",
                   }}
                 />
-                <Bar dataKey="sales" fill="url(#barGradient)" />
-                <defs>
-                  <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#8B5CF6" />
-                    <stop offset="100%" stopColor="#EC4899" />
-                  </linearGradient>
-                </defs>
+                <Bar dataKey="current" name="Current Sales" fill="#8B5CF6" />
+                <Bar dataKey="predicted" name="Predicted Sales" fill="#EC4899" />
               </BarChart>
             </ResponsiveContainer>
           </div>

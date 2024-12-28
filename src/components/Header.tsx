@@ -27,7 +27,7 @@ const Header = () => {
       <div className="absolute right-4 top-4 flex gap-2">
         <Dialog>
           <DialogTrigger asChild>
-            <Button variant="outline" className="flex items-center gap-2">
+            <Button variant="outline" className="flex items-center gap-2 bg-purple-600 text-white hover:bg-purple-700 border-none">
               <LogIn className="w-4 h-4" />
               Login
             </Button>
@@ -39,14 +39,14 @@ const Header = () => {
             <div className="grid gap-4 py-4">
               <input type="email" placeholder="Email" className="px-4 py-2 rounded-lg border" />
               <input type="password" placeholder="Password" className="px-4 py-2 rounded-lg border" />
-              <Button>Login</Button>
+              <Button className="bg-purple-600 text-white hover:bg-purple-700">Login</Button>
             </div>
           </DialogContent>
         </Dialog>
 
         <Dialog>
           <DialogTrigger asChild>
-            <Button variant="default" className="flex items-center gap-2">
+            <Button variant="default" className="flex items-center gap-2 bg-pink-600 text-white hover:bg-pink-700">
               <UserPlus className="w-4 h-4" />
               Sign Up
             </Button>
@@ -59,7 +59,7 @@ const Header = () => {
               <input type="text" placeholder="Full Name" className="px-4 py-2 rounded-lg border" />
               <input type="email" placeholder="Email" className="px-4 py-2 rounded-lg border" />
               <input type="password" placeholder="Password" className="px-4 py-2 rounded-lg border" />
-              <Button>Sign Up</Button>
+              <Button className="bg-pink-600 text-white hover:bg-pink-700">Sign Up</Button>
             </div>
           </DialogContent>
         </Dialog>
