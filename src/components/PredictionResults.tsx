@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import { Card } from "./ui/card";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
@@ -21,7 +22,7 @@ const pieData = [
 const COLORS = ["#8B5CF6", "#EC4899", "#F43F5E"];
 
 const PredictionResults = () => {
-  const [showPieChart, setShowPieChart] = React.useState(false);
+  const [showPieChart, setShowPieChart] = useState(false);
 
   return (
     <motion.section
