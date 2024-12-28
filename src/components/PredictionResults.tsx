@@ -1,14 +1,22 @@
 import { motion } from "framer-motion";
 import { Card } from "./ui/card";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
 
-const sampleData = [
-  { month: "Jan", value: 400 },
-  { month: "Feb", value: 300 },
-  { month: "Mar", value: 600 },
-  { month: "Apr", value: 800 },
-  { month: "May", value: 500 },
+const barData = [
+  { category: "Electronics", sales: 4000 },
+  { category: "Clothing", sales: 3000 },
+  { category: "Food", sales: 2000 },
+  { category: "Books", sales: 2780 },
+  { category: "Sports", sales: 1890 },
 ];
+
+const pieData = [
+  { name: "High Demand", value: 400 },
+  { name: "Medium Demand", value: 300 },
+  { name: "Low Demand", value: 300 },
+];
+
+const COLORS = ["#8B5CF6", "#EC4899", "#F43F5E"];
 
 const PredictionResults = () => {
   return (
@@ -26,12 +34,12 @@ const PredictionResults = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card className="p-4 bg-black/40 backdrop-blur-sm border-gray-800">
-          <h3 className="text-lg font-semibold mb-4">Inventory Trend Prediction</h3>
+          <h3 className="text-lg font-semibold mb-4">Predicted Sales by Category</h3>
           <div className="h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={sampleData}>
+              <BarChart data={barData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#333" />
-                <XAxis dataKey="month" stroke="#888" />
+                <XAxis dataKey="category" stroke="#888" />
                 <YAxis stroke="#888" />
                 <Tooltip
                   contentStyle={{
@@ -39,27 +47,45 @@ const PredictionResults = () => {
                     border: "1px solid #333",
                   }}
                 />
-                <Line
-                  type="monotone"
-                  dataKey="value"
-                  stroke="url(#colorGradient)"
-                  strokeWidth={2}
-                />
+                <Bar dataKey="sales" fill="url(#barGradient)" />
                 <defs>
-                  <linearGradient id="colorGradient" x1="0" y1="0" x2="1" y2="0">
+                  <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stopColor="#8B5CF6" />
                     <stop offset="100%" stopColor="#EC4899" />
                   </linearGradient>
                 </defs>
-              </LineChart>
+              </BarChart>
             </ResponsiveContainer>
           </div>
         </Card>
 
         <Card className="p-4 bg-black/40 backdrop-blur-sm border-gray-800">
-          <h3 className="text-lg font-semibold mb-4">Stock Distribution</h3>
-          <div className="h-[300px] flex items-center justify-center text-gray-400">
-            Coming Soon
+          <h3 className="text-lg font-semibold mb-4">Demand Distribution</h3>
+          <div className="h-[300px]">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={pieData}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={60}
+                  outerRadius={80}
+                  fill="#8884d8"
+                  paddingAngle={5}
+                  dataKey="value"
+                >
+                  {pieData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                  ))}
+                </Pie>
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "rgba(0, 0, 0, 0.8)",
+                    border: "1px solid #333",
+                  }}
+                />
+              </PieChart>
+            </ResponsiveContainer>
           </div>
         </Card>
       </div>
