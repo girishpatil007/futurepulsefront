@@ -16,7 +16,6 @@ const Footer = () => {
         url = `https://wa.me/?text=${encodeURIComponent(`Check out FuturePulse! ${shareUrl}`)}`;
         break;
       case 'instagram':
-        // Instagram doesn't support direct sharing via URL, open Instagram profile instead
         url = 'https://instagram.com/futurepulse';
         break;
       case 'email':
@@ -75,9 +74,6 @@ const Footer = () => {
               <Mail className="w-5 h-5" />
             </Button>
           </div>
-        </div>
-        <div className="mt-8 pt-8 border-t border-gray-800">
-          <p className="text-gray-400 text-sm">&copy; 2024 FuturePulse. All rights reserved.</p>
         </div>
       </div>
     </motion.footer>
