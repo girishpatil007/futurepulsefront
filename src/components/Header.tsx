@@ -74,7 +74,7 @@ const Header = () => {
         <img 
           src="https://www.svgrepo.com/show/366974/dtr.svg" 
           alt="FuturePulse Logo" 
-          className="w-24 h-24"
+          className="w-32 h-32"
         />
         <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-transparent bg-clip-text relative inline-block">
           Future<span className="text-white">pulse</span>
