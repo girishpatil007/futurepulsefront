@@ -69,9 +69,14 @@ const Header = () => {
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="mb-6"
+        className="mb-6 flex items-center justify-center gap-2"
       >
-        <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-transparent bg-clip-text relative inline-block">
+        <img 
+          src="https://www.svgrepo.com/show/366974/dtr.svg" 
+          alt="FuturePulse Logo" 
+          className="w-10 h-10"
+        />
+        <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-transparent bg-clip-text relative inline-block">
           Future<span className="text-white">pulse</span>
           <div className="absolute -inset-1 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 rounded-lg opacity-20 blur-lg"></div>
         </h1>
