@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import { Card } from "./ui/card";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from "recharts";
 import { Switch } from "./ui/switch";
 
 const barData = [
@@ -18,7 +18,8 @@ const pieData = [
   { name: "Other", value: 5 },
 ];
 
-const COLORS = ["#67E8F9", "#F59E0B", "#8B5CF6", "#22C55E", "#EC4899"];
+// Enhanced color palette
+const COLORS = ['#9b87f5', '#D946EF', '#F97316', '#0EA5E9', '#8E9196'];
 
 const PredictionResults = () => {
   const [showPieChart, setShowPieChart] = useState(false);
@@ -31,16 +32,21 @@ const PredictionResults = () => {
       className="my-8 space-y-8"
     >
       <div className="flex flex-col space-y-8">
-        <Card className="p-6 bg-[#F8FAFC]/5 backdrop-blur-sm border-gray-800 rounded-3xl">
+        <Card className="p-6 bg-[#0B0F1A]/80 backdrop-blur-sm border border-purple-500/20 rounded-3xl shadow-xl">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-semibold text-white">
-              {showPieChart ? "Demand Distribution" : "Predicted Sales by"}
+            <h2 className="text-2xl font-semibold text-white bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
+              {showPieChart ? "Demand Distribution" : "Predicted Sales Analysis"}
             </h2>
-            <Switch
-              checked={showPieChart}
-              onCheckedChange={setShowPieChart}
-              className="data-[state=checked]:bg-blue-500"
-            />
+            <div className="flex items-center gap-3">
+              <span className="text-sm text-gray-400">
+                {showPieChart ? "Distribution View" : "Comparison View"}
+              </span>
+              <Switch
+                checked={showPieChart}
+                onCheckedChange={setShowPieChart}
+                className="data-[state=checked]:bg-purple-500"
+              />
+            </div>
           </div>
 
           <AnimatePresence mode="wait">
@@ -50,22 +56,53 @@ const PredictionResults = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 20 }}
+                transition={{ duration: 0.3 }}
                 className="h-[400px]"
               >
                 <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={barData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                    <XAxis dataKey="category" stroke="#94A3B8" />
-                    <YAxis stroke="#94A3B8" />
+                  <BarChart
+                    data={barData}
+                    margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" stroke="#1F2937" />
+                    <XAxis
+                      dataKey="category"
+                      stroke="#94A3B8"
+                      tick={{ fill: '#94A3B8' }}
+                    />
+                    <YAxis
+                      stroke="#94A3B8"
+                      tick={{ fill: '#94A3B8' }}
+                    />
                     <Tooltip
                       contentStyle={{
-                        backgroundColor: "rgba(30, 41, 59, 0.9)",
-                        border: "1px solid #475569",
+                        backgroundColor: "rgba(17, 24, 39, 0.95)",
+                        border: "1px solid #374151",
                         borderRadius: "8px",
+                        boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+                      }}
+                      labelStyle={{ color: '#E5E7EB' }}
+                      itemStyle={{ color: '#E5E7EB' }}
+                    />
+                    <Legend
+                      wrapperStyle={{
+                        padding: "20px 0",
                       }}
                     />
-                    <Bar dataKey="current" name="Series 1" fill="#67E8F9" radius={[4, 4, 0, 0]} />
-                    <Bar dataKey="predicted" name="Series 2" fill="#2563EB" radius={[4, 4, 0, 0]} />
+                    <Bar
+                      dataKey="current"
+                      name="Current"
+                      fill="#9b87f5"
+                      radius={[4, 4, 0, 0]}
+                      animationDuration={1500}
+                    />
+                    <Bar
+                      dataKey="predicted"
+                      name="Predicted"
+                      fill="#D946EF"
+                      radius={[4, 4, 0, 0]}
+                      animationDuration={1500}
+                    />
                   </BarChart>
                 </ResponsiveContainer>
               </motion.div>
@@ -75,6 +112,7 @@ const PredictionResults = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.3 }}
                 className="h-[400px]"
               >
                 <ResponsiveContainer width="100%" height="100%">
@@ -89,17 +127,35 @@ const PredictionResults = () => {
                       paddingAngle={5}
                       dataKey="value"
                       animationBegin={0}
-                      animationDuration={1000}
+                      animationDuration={1500}
+                      label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                      labelLine={{ stroke: '#94A3B8', strokeWidth: 1 }}
                     >
                       {pieData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        <Cell
+                          key={`cell-${index}`}
+                          fill={COLORS[index % COLORS.length]}
+                          stroke="rgba(255,255,255,0.1)"
+                          strokeWidth={1}
+                        />
                       ))}
                     </Pie>
                     <Tooltip
                       contentStyle={{
-                        backgroundColor: "rgba(30, 41, 59, 0.9)",
-                        border: "1px solid #475569",
+                        backgroundColor: "rgba(17, 24, 39, 0.95)",
+                        border: "1px solid #374151",
                         borderRadius: "8px",
+                        boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+                      }}
+                      labelStyle={{ color: '#E5E7EB' }}
+                      itemStyle={{ color: '#E5E7EB' }}
+                    />
+                    <Legend
+                      layout="vertical"
+                      align="right"
+                      verticalAlign="middle"
+                      wrapperStyle={{
+                        paddingLeft: "20px",
                       }}
                     />
                   </PieChart>
