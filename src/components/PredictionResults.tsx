@@ -37,15 +37,18 @@ const PredictionResults = () => {
             <h2 className="text-2xl font-semibold text-white bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
               {showPieChart ? "Demand Distribution" : "Predicted Sales Analysis"}
             </h2>
-            <div className="flex items-center gap-3">
-              <span className="text-sm text-gray-400">
-                {showPieChart ? "Distribution View" : "Comparison View"}
+            <div className="flex items-center gap-3 bg-white/5 px-4 py-2 rounded-full border border-purple-500/20 backdrop-blur-sm">
+              <span className={`text-sm transition-colors duration-200 ${showPieChart ? 'text-purple-400' : 'text-gray-400'}`}>
+                {showPieChart ? "Distribution" : "Comparison"}
               </span>
               <Switch
                 checked={showPieChart}
                 onCheckedChange={setShowPieChart}
-                className="data-[state=checked]:bg-purple-500"
+                className="data-[state=checked]:bg-purple-500 data-[state=unchecked]:bg-gray-700"
               />
+              <span className={`text-sm transition-colors duration-200 ${!showPieChart ? 'text-purple-400' : 'text-gray-400'}`}>
+                {!showPieChart ? "View" : "View"}
+              </span>
             </div>
           </div>
 
