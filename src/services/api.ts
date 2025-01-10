@@ -20,7 +20,7 @@ api.interceptors.request.use((config) => {
 
 export const authService = {
   async login(email: string, password: string) {
-    const response = await api.post('/login', { email, password });
+    const response = await api.post('/auth/login', { email, password });
     if (response.data.token) {
       localStorage.setItem('token', response.data.token);
     }
@@ -28,12 +28,12 @@ export const authService = {
   },
 
   async signup(name: string, email: string, password: string) {
-    const response = await api.post('/signup', { name, email, password });
+    const response = await api.post('/auth/signup', { name, email, password });
     return response.data;
   },
 
   async getCurrentUser() {
-    const response = await api.get('/user/profile');
+    const response = await api.get('/auth/profile');
     return response.data;
   },
 
