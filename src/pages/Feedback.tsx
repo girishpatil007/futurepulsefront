@@ -21,7 +21,7 @@ const Feedback = () => {
         title: "Success",
         description: "Feedback submitted successfully",
       });
-      navigate("/dashboard");
+      navigate("/");
     } catch (error) {
       toast({
         title: "Error",

@@ -22,7 +22,7 @@ const Login = () => {
         title: "Success",
         description: "Logged in successfully",
       });
-      navigate("/dashboard");
+      navigate("/");
     } catch (error) {
       toast({
         title: "Error",
