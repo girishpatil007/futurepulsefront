@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "@/hooks/use-toast";
-import { authService } from "@/services/api";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -20,10 +19,11 @@ const Login = () => {
     setIsLoading(true);
     
     try {
-      await authService.login(email, password);
+      // For now, just log the credentials
+      console.log({ email, password, rememberMe });
       toast({
         title: "Success",
-        description: "Logged in successfully",
+        description: "Logged in successfully (demo)",
       });
       navigate("/");
     } catch (error) {
@@ -38,10 +38,11 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-purple-50 p-4">
-      <div className="w-full max-w-md space-y-8 bg-white rounded-2xl shadow-xl p-8">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-950 via-purple-900 to-pink-900 p-4">
+      <div className="w-full max-w-md space-y-8 bg-black/20 backdrop-blur-xl rounded-2xl shadow-xl p-8 border border-white/10">
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-[#1a237e]">sign in</h2>
+          <h2 className="text-3xl font-bold text-white">Welcome Back</h2>
+          <p className="mt-2 text-gray-400">Please sign in to continue</p>
         </div>
 
         <form onSubmit={handleLogin} className="mt-8 space-y-6">
@@ -49,11 +50,11 @@ const Login = () => {
             <div className="relative">
               <Input
                 type="email"
-                placeholder="Username or E-mail"
+                placeholder="Email Address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500"
+                className="bg-white/5 border-white/10 text-white placeholder:text-gray-400"
               />
             </div>
 
@@ -64,60 +65,56 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500"
+                className="bg-white/5 border-white/10 text-white placeholder:text-gray-400"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"
               >
                 {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
               </button>
             </div>
           </div>
 
-          <div className="flex items-center">
+          <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Checkbox
                 id="remember"
                 checked={rememberMe}
                 onCheckedChange={(checked) => setRememberMe(checked as boolean)}
               />
-              <label htmlFor="remember" className="text-sm text-gray-600">
-                Keep me signed in
+              <label htmlFor="remember" className="text-sm text-gray-300">
+                Remember me
               </label>
             </div>
+            <button
+              type="button"
+              className="text-sm text-purple-400 hover:text-purple-300"
+            >
+              Forgot password?
+            </button>
           </div>
 
           <Button
             type="submit"
-            className="w-full py-3 px-4 bg-[#1a237e] hover:bg-[#283593] text-white rounded-lg transition-colors"
+            className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white"
             disabled={isLoading}
           >
-            {isLoading ? "Logging in..." : "Login"}
+            {isLoading ? "Signing in..." : "Sign in"}
           </Button>
 
-          <div className="text-center">
+          <div className="text-center text-gray-400">
+            <span className="mr-2">Don't have an account?</span>
             <button
               type="button"
-              onClick={() => navigate("/forgot-password")}
-              className="text-sm text-gray-600 hover:text-purple-600"
+              onClick={() => navigate("/signup")}
+              className="text-purple-400 hover:text-purple-300"
             >
-              Forgot your password?
+              Sign up
             </button>
           </div>
         </form>
-
-        <div className="mt-6 text-center bg-[#1a237e] text-white py-4 rounded-lg">
-          <span className="mr-2">Want to create new account?</span>
-          <button
-            type="button"
-            onClick={() => navigate("/signup")}
-            className="text-[#4fc3f7] hover:text-[#81d4fa]"
-          >
-            Sign up Here
-          </button>
-        </div>
       </div>
     </div>
   );
