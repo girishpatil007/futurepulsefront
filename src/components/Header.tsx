@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { LogIn, UserPlus } from "lucide-react";
+import { LogIn, UserPlus, MessageSquare } from "lucide-react";
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
 
@@ -41,6 +41,14 @@ const Header = () => {
         >
           <UserPlus className="w-4 h-4" />
           Sign Up
+        </Button>
+        <Button 
+          variant="outline" 
+          className="flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border-none"
+          onClick={() => navigate("/feedback")}
+        >
+          <MessageSquare className="w-4 h-4" />
+          Feedback
         </Button>
       </div>
 
