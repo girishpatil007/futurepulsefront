@@ -40,39 +40,44 @@ const Footer = () => {
               FuturePulse revolutionizes inventory management through AI-powered predictive analytics, helping businesses optimize stock levels and make data-driven decisions.
             </p>
           </div>
-          <div className="flex gap-4">
-            <Button
-              variant="outline"
-              size="icon"
-              className="bg-[#1877F2] hover:bg-[#1877F2]/80 text-white rounded-full"
-              onClick={() => handleShare('facebook')}
-            >
-              <Facebook className="w-5 h-5" />
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              className="bg-[#25D366] hover:bg-[#25D366]/80 text-white rounded-full"
-              onClick={() => handleShare('whatsapp')}
-            >
-              <FaWhatsapp className="w-5 h-5" />
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              className="bg-[#E4405F] hover:bg-[#E4405F]/80 text-white rounded-full"
-              onClick={() => handleShare('instagram')}
-            >
-              <Instagram className="w-5 h-5" />
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              className="bg-[#EA4335] hover:bg-[#EA4335]/80 text-white rounded-full"
-              onClick={() => handleShare('email')}
-            >
-              <Mail className="w-5 h-5" />
-            </Button>
+          <div className="flex flex-col items-center gap-4">
+            <h4 className="text-lg font-semibold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-transparent bg-clip-text">
+              Follow Us
+            </h4>
+            <div className="flex gap-4">
+              <Button
+                variant="outline"
+                size="icon"
+                className="bg-[#1877F2]/10 hover:bg-[#1877F2]/20 text-[#1877F2] rounded-full border-[#1877F2]/30 hover:border-[#1877F2] transition-all duration-300"
+                onClick={() => handleShare('facebook')}
+              >
+                <Facebook className="w-5 h-5" />
+              </Button>
+              <Button
+                variant="outline"
+                size="icon"
+                className="bg-[#25D366]/10 hover:bg-[#25D366]/20 text-[#25D366] rounded-full border-[#25D366]/30 hover:border-[#25D366] transition-all duration-300"
+                onClick={() => handleShare('whatsapp')}
+              >
+                <FaWhatsapp className="w-5 h-5" />
+              </Button>
+              <Button
+                variant="outline"
+                size="icon"
+                className="bg-[#E4405F]/10 hover:bg-[#E4405F]/20 text-[#E4405F] rounded-full border-[#E4405F]/30 hover:border-[#E4405F] transition-all duration-300"
+                onClick={() => handleShare('instagram')}
+              >
+                <Instagram className="w-5 h-5" />
+              </Button>
+              <Button
+                variant="outline"
+                size="icon"
+                className="bg-[#EA4335]/10 hover:bg-[#EA4335]/20 text-[#EA4335] rounded-full border-[#EA4335]/30 hover:border-[#EA4335] transition-all duration-300"
+                onClick={() => handleShare('email')}
+              >
+                <Mail className="w-5 h-5" />
+              </Button>
+            </div>
           </div>
         </div>
       </div>
