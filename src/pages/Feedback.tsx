@@ -21,7 +21,7 @@ const Feedback = () => {
     setIsSubmitting(true);
     
     try {
-      await feedbackService.submitFeedback(message);
+      await feedbackService.submitFeedback(name, email, message);
       toast({
         title: "Success",
         description: "Thank you for your feedback!",

@@ -43,8 +43,8 @@ export const authService = {
 };
 
 export const feedbackService = {
-  async submitFeedback(message: string) {
-    const response = await api.post('/feedback', { message });
+  async submitFeedback(name: string, email: string, message: string) {
+    const response = await api.post('/feedback', { name, email, message });
     return response.data;
   },
 };
