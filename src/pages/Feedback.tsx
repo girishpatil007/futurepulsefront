@@ -50,18 +50,18 @@ const Feedback = () => {
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="name">Name</Label>
+              <Label htmlFor="name" className="text-white">Name</Label>
               <Input
                 id="name"
                 placeholder="Your name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
-                className="bg-black/50 border-gray-700"
+                className="bg-black/50 border-gray-700 text-white placeholder:text-gray-400"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email" className="text-white">Email</Label>
               <Input
                 id="email"
                 type="email"
@@ -69,18 +69,18 @@ const Feedback = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="bg-black/50 border-gray-700"
+                className="bg-black/50 border-gray-700 text-white placeholder:text-gray-400"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="message">Your Feedback</Label>
+              <Label htmlFor="message" className="text-white">Your Feedback</Label>
               <Textarea
                 id="message"
                 placeholder="Share your thoughts about our service..."
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 required
-                className="min-h-[150px] bg-black/50 border-gray-700"
+                className="min-h-[150px] bg-black/50 border-gray-700 text-white placeholder:text-gray-400"
               />
             </div>
             <Button
@@ -93,7 +93,7 @@ const Feedback = () => {
             <Button
               type="button"
               variant="outline"
-              className="w-full border-gray-700 hover:bg-gray-800"
+              className="w-full border-gray-700 hover:bg-gray-800 text-white"
               onClick={() => navigate("/")}
             >
               Back to Home
