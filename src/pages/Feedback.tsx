@@ -93,7 +93,7 @@ const Feedback = () => {
             <Button
               type="button"
               variant="outline"
-              className="w-full border-gray-700 hover:bg-gray-800 text-white"
+              className="w-full border-gray-700 hover:bg-gray-800 text-black"
               onClick={() => navigate("/")}
             >
               Back to Home
